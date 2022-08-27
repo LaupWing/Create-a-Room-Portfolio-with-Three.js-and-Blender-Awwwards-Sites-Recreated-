@@ -45,4 +45,5 @@ export default class Camera {
       this.orthographicCamera.bottom = -this.sizes.frustrum/2
    }
 
+   update(){}
 }
