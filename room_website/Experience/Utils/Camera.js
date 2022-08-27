@@ -13,9 +13,17 @@ export default class Camera {
       
    }
    createPerspectiveCamera(){
-      this.perspectiveCamera = new THREE.PerspectiveCamera(35, this.sizes.aspect, 0.1, 100)
+      this.perspectiveCamera = new THREE.PerspectiveCamera(
+         35, 
+         this.sizes.aspect, 
+         0.1, 
+         100
+      )
+      this.scene.add(this.perspectiveCamera)
    }  
    createOrthographicCamera(){
-
+      this.frustrum = 5
+      this.orthographicCamera = new THREE.OrthographicCamera(35, this.sizes.aspect, 0.1, 100)
+      this.scene.add(this.orthographicCamera)
    }
 }
