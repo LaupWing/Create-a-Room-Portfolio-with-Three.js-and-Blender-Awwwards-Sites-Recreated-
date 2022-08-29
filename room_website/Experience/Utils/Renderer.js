@@ -7,6 +7,7 @@ export default class Renderer {
       this.sizes = this.experience.sizes
       this.canvas = this.experience.canvas
       this.scene = this.experience.scene
+      this.camera = this.experience.camera
 
       this.setRenderer()
       
@@ -33,5 +34,7 @@ export default class Renderer {
       this.renderer.setPixelRatio(this.sizes.pixelRatio)
    }
 
-   update(){}
+   update(){
+      this.renderer.render(this.scene, this.camera.perspectiveCamera)
+   }
 }
