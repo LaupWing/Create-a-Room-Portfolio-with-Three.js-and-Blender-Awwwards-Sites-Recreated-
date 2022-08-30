@@ -11,7 +11,10 @@ export default class World {
       this.camera = this.experience.camera
       this.resources = this.experience.resources
 
-      this.room = new Room()  
+      this.resources.on("ready", ()=>{
+         this.room = new Room()  
+      })
+
    }
 
    resize(){
