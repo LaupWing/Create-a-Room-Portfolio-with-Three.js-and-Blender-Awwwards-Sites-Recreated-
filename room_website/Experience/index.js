@@ -1,6 +1,6 @@
 import * as THREE from "three"
 import Camera from "./Utils/Camera"
-import Renderer from "./Utils/Renderer"
+import Renderer from "./Renderer"
 import Sizes from "./Utils/Size"
 import Time from "./Utils/Time"
 import World from "./World/World"
