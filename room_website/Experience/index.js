@@ -1,5 +1,5 @@
 import * as THREE from "three"
-import Camera from "./Utils/Camera"
+import Camera from "./Camera"
 import Renderer from "./Renderer"
 import Sizes from "./Utils/Size"
 import Time from "./Utils/Time"
