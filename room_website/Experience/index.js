@@ -3,6 +3,7 @@ import Camera from "./Utils/Camera"
 import Renderer from "./Utils/Renderer"
 import Sizes from "./Utils/Size"
 import Time from "./Utils/Time"
+import World from "./World/World"
 
 export default class Experience {
    static instance
@@ -19,6 +20,7 @@ export default class Experience {
       this.sizes = new Sizes()
       this.camera = new Camera()
       this.renderer = new Renderer()
+      this.world = new World()
 
       this.time.on("update", ()=>{
          this.update()
