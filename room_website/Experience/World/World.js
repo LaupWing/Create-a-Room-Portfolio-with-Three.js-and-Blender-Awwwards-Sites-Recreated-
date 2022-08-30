@@ -9,6 +9,8 @@ export default class World {
       this.canvas = this.experience.canvas
       this.scene = this.experience.scene
       this.camera = this.experience.camera
+      this.resources = this.experience.resources
+
       this.room = new Room()  
    }
 
