@@ -14,6 +14,8 @@ export default class Room {
 
    setModel(){
       this.scene.add(this.actualRooom)
+      this.actualRooom.scale.set(0.11, 0.11, 0.11)
+      this.actualRooom.rotation.y = Math.PI
    }
 
    resize(){
