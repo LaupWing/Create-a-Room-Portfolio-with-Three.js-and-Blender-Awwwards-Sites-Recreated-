@@ -16,6 +16,13 @@ export default class Room {
       this.actualRooom.children.forEach(child =>{
          child.castShadow = true
          child.receiveShadow = true
+         
+         if(child instanceof THREE.Group){
+            child.children.forEach(groupChild=>{
+               groupChild.castShadow = true
+               groupChild.receiveShadow = true
+            })
+         }
       })
 
       this.scene.add(this.actualRooom)
