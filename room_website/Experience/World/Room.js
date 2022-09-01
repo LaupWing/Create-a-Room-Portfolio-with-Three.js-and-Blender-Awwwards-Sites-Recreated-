@@ -13,6 +13,11 @@ export default class Room {
    }
 
    setModel(){
+      this.actualRooom.children.forEach(child =>{
+         child.castShadow = true
+         child.receiveShadow = true
+      })
+
       this.scene.add(this.actualRooom)
       this.actualRooom.scale.set(0.11, 0.11, 0.11)
       this.actualRooom.rotation.y = Math.PI
