@@ -27,10 +27,17 @@ export default class Room {
          if(child.name === "Aquarium_glass"){
             child.material = new THREE.MeshPhysicalMaterial()
             child.material.roughness = 0
-            child.material.color.set(0xffffff)
+            child.material.color.set(0x549dd2)
             child.material.ior = 3
             child.material.transmission = 1
             child.material.opacity =1
+         }
+
+         if(child.name === "Computer_Screen"){
+            console.log("Scren")
+            child.material = new THREE.MeshBasicMaterial({
+               map: this.resources.items.screen
+            })
          }
       })
 
