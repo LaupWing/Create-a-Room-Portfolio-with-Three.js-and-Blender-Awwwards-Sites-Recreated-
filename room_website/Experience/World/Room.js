@@ -8,8 +8,10 @@ export default class Room {
       this.resources = this.experience.resources
       this.room = this.resources.items.room
       this.actualRooom = this.room.scene
+      this.time = this.experience.time
       
       this.setModel()
+      this.setAnimation()
    }
 
    setModel(){
@@ -34,7 +36,6 @@ export default class Room {
          }
 
          if(child.name === "Computer_Screen"){
-            console.log("Scren")
             child.material = new THREE.MeshBasicMaterial({
                map: this.resources.items.screen
             })
@@ -46,11 +47,19 @@ export default class Room {
       this.actualRooom.rotation.y = Math.PI
    }
 
+   setAnimation(){
+      this.mixer = new THREE.AnimationMixer(this.actualRooom)
+      this.room.animations.forEach(a=>{
+         const swim = this.mixer.clipAction(a)
+         swim.play()
+      })
+   }
+
    resize(){
       
    }
 
    update(){
-      
+      this.mixer.update(this.time.delta * 0.0009)
    }
 }
