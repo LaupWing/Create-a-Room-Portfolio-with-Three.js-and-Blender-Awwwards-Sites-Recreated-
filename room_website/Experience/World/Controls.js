@@ -73,9 +73,14 @@ export default class Controls {
       this.camera.orthographicCamera.position.copy(this.position)
 
       this.directionalVector.subVectors(
-         (this.lerp.current%1) + 0.000001, 
+         this.curve.getPointAt((this.lerp.current%1) + 0.000001), 
          this.position
       )
       this.directionalVector.normalize()
+      this.crossVector.crossVectors(
+         this.directionalVector,
+         this.staticVector
+      )
+      this.camera.orthographicCamera.lookAt(this.crossVector)
    }
 }
