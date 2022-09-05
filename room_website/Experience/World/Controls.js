@@ -81,6 +81,7 @@ export default class Controls {
          this.directionalVector,
          this.staticVector
       )
+      this.crossVector.multiplyScalar(100000)
       this.camera.orthographicCamera.lookAt(this.crossVector)
    }
 }
