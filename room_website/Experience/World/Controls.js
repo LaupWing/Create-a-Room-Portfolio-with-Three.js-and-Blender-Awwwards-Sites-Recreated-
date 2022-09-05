@@ -1,5 +1,6 @@
 import Experience from "..";
 import * as THREE from "three"
+import GSAP from "gsap"
 
 export default class Controls {
    constructor(){
@@ -8,8 +9,17 @@ export default class Controls {
       this.resources = this.experience.resources
       this.time = this.experience.time
       this.camera = this.experience.camera
+
       this.progress = 0
       this.dummyVector = new THREE.Vector3(0,0,0)
+
+      this.lerp = {
+         current: 0,
+         target: 0,
+         ease: 0.1
+      }
+      this.position = new THREE.Vector3(0,0,0)
+
       this.setPath()
       this.onWheel()
    }
@@ -36,12 +46,9 @@ export default class Controls {
    onWheel(){
       window.addEventListener("wheel", (e)=>{
          if(e.deltaY > 0){
-            this.progress += 0.1
+            this.lerp.target += 0.1
          }else{
-            if(this.progress < 0){
-               this.progress = 1
-            }
-            this.progress -= 0.1
+            this.lerp.target -= 0.1
          }
       })
    }
@@ -51,8 +58,13 @@ export default class Controls {
    }
 
    update(){
-      this.curve.getPointAt(this.progress %1, this.dummyVector)
-      // this.progress-= 0.001
-      this.camera.orthographicCamera.position.copy(this.dummyVector)
+      this.lerp.current = GSAP.utils.interpolate(
+         this.lerp.current,
+         this.lerp.target,
+         this.lerp.ease
+      )
+      this.curve.getPointAt(this.lerp.position, this.position)
+      
+      this.camera.orthographicCamera.position.copy(this.position)
    }
 }
