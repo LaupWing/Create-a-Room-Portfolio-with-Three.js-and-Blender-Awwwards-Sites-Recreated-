@@ -46,9 +46,9 @@ export default class Controls {
    onWheel(){
       window.addEventListener("wheel", (e)=>{
          if(e.deltaY > 0){
-            this.lerp.target += 0.1
+            this.lerp.target += 0.01
          }else{
-            this.lerp.target -= 0.1
+            this.lerp.target -= 0.01
          }
       })
    }
@@ -63,7 +63,7 @@ export default class Controls {
          this.lerp.target,
          this.lerp.ease
       )
-      this.curve.getPointAt(this.lerp.position, this.position)
+      this.curve.getPointAt(this.lerp.current, this.position)
       
       this.camera.orthographicCamera.position.copy(this.position)
    }
