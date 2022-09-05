@@ -19,6 +19,11 @@ export default class Controls {
          ease: 0.1
       }
       this.position = new THREE.Vector3(0,0,0)
+      this.lookAtPosition = new THREE.Vector3(0, 0, 0)
+
+      this.directionalVector = new THREE.Vector3(0, 0, 0)
+      this.staticVector = new THREE.Vector3(0, 1, 0)
+      this.crossVector = new THREE.Vector3(0, 0, 0)
 
       this.setPath()
       this.onWheel()
@@ -26,11 +31,10 @@ export default class Controls {
 
    setPath(){
       this.curve = new THREE.CatmullRomCurve3([
-         new THREE.Vector3(-10, 0, 10),
-         new THREE.Vector3(-5, 5, 5),
-         new THREE.Vector3(0, 0, 0),
-         new THREE.Vector3(5, -5, 5),
-         new THREE.Vector3(10, 0, 10)
+         new THREE.Vector3(-5, 0, 0),
+         new THREE.Vector3(0, 0, -5),
+         new THREE.Vector3(5, 0, 0),
+         new THREE.Vector3(0, 0, 5)
       ], true)
 
       const points = this.curve.getPoints(50)
@@ -47,8 +51,10 @@ export default class Controls {
       window.addEventListener("wheel", (e)=>{
          if(e.deltaY > 0){
             this.lerp.target += 0.01
+            this.back = false
          }else{
             this.lerp.target -= 0.01
+            this.back = true
          }
       })
    }
@@ -63,8 +69,13 @@ export default class Controls {
          this.lerp.target,
          this.lerp.ease
       )
-      this.curve.getPointAt(this.lerp.current, this.position)
-      
+      this.curve.getPointAt(this.lerp.current %1, this.position)
       this.camera.orthographicCamera.position.copy(this.position)
+
+      this.directionalVector.subVectors(
+         (this.lerp.current%1) + 0.000001, 
+         this.position
+      )
+      this.directionalVector.normalize()
    }
 }
