@@ -28,15 +28,13 @@ export default class Camera {
       this.perspectiveCamera.position.y = 14
    }  
    createOrthographicCamera(){
-      this.frustrum = 5
-      console.log(this.sizes)
       this.orthographicCamera = new THREE.OrthographicCamera(
          (-this.sizes.aspect * this.sizes.frustrum)/2, 
          (this.sizes.aspect * this.sizes.frustrum)/2, 
          this.sizes.frustrum/2, 
          -this.sizes.frustrum/2,
-         -100,
-         100
+         -10,
+         10
       )
 
       this.scene.add(this.orthographicCamera)
@@ -44,8 +42,8 @@ export default class Camera {
       this.scene.add(this.helper)
       this.scene.add(this.orthographicCamera)
 
-      const size = 10
-      const divisions =10
+      const size = 20
+      const divisions = 20
 
       const gridHelper = new THREE.GridHelper(size, divisions)
       this.scene.add(gridHelper)
