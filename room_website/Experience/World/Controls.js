@@ -1,6 +1,5 @@
 import Experience from "..";
 import * as THREE from "three"
-import GSAP from "gsap"
 
 export default class Controls {
    constructor(){
@@ -10,11 +9,6 @@ export default class Controls {
       this.time = this.experience.time
       this.camera = this.experience.camera
 
-      this.lerp = {
-         current: 0,
-         target: 0,
-         ease: 0.1
-      }
 
    }
 
@@ -24,10 +18,5 @@ export default class Controls {
    }
 
    update(){
-      this.lerp.current = GSAP.utils.interpolate(
-         this.lerp.current,
-         this.lerp.target,
-         this.lerp.ease
-      )
    }
 }
