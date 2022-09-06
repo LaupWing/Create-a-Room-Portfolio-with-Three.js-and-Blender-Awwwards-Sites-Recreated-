@@ -41,7 +41,7 @@ export default class Renderer {
          this.sizes.width, 
          this.sizes.height
       )
-      this.renderer.render(this.scene, this.camera.orthographicCamera)
+      this.renderer.render(this.scene, this.camera.perspectiveCamera)
       this.renderer.setScissorTest(true)
 
       this.renderer.setViewport(
@@ -58,7 +58,7 @@ export default class Renderer {
          this.sizes.height / 3
       )
 
-      this.renderer.render(this.scene, this.camera.perspectiveCamera)
+      this.renderer.render(this.scene, this.camera.orthographicCamera)
       this.renderer.setScissorTest(false)
    }
 }
