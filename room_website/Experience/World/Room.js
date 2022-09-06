@@ -67,6 +67,7 @@ export default class Room {
       window.addEventListener("mousemove", e =>{
          console.log(e)
          this.rotation = ((e.clientX - window.innerWidth/2) * 2) / window.innerWidth
+         this.lerp.target = this.rotation
       })
    }
 
@@ -80,6 +81,9 @@ export default class Room {
          this.lerp.target,
          this.lerp.ease
       )
+
+      this.actualRooom.rotation.y = this.lerp.current
+
       this.mixer.update(this.time.delta * 0.0009)
    }
 }

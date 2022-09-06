@@ -37,10 +37,14 @@ export default class Camera {
          10
       )
 
+      this.orthographicCamera.position.y = 3.5
+      this.orthographicCamera.position.z = 5
+      this.orthographicCamera.position.x = -(Math.PI / 6)
+
       this.scene.add(this.orthographicCamera)
+
       this.helper = new THREE.CameraHelper(this.orthographicCamera)
       this.scene.add(this.helper)
-      this.scene.add(this.orthographicCamera)
 
       const size = 20
       const divisions = 20
